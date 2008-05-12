@@ -1,0 +1,854 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:p1="http://trajano.us.es/~isabel/EHR/EHR_RM.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:dtrm="http://trajano.us.es/~isabel/EHR/Data_Types_RM.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:crm="http://trajano.us.es/~isabel/EHR/Common_RM.owl#"
+    xmlns:drm="http://trajano.us.es/~isabel/EHR/Demographic_RM.owl#"
+    xmlns:srm="http://trajano.us.es/~isabel/EHR/Support_RM.owl#"
+    xmlns:dsrm="http://trajano.us.es/~isabel/EHR/Data_Structures_RM.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://trajano.us.es/~isabel/EHR/EHR_RM.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://trajano.us.es/~isabel/EHR/Demographic_RM.owl"/>
+    <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/protege"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ontology based on the openEHR EHR Reference Model
+Revision: 4.3.2
+Written in owl by Isabel Roman</rdfs:comment>
+  </owl:Ontology>
+  <rdfs:Class rdf:about="http://trajano.us.es/~isabel/EHR/Common_RM.owl#LIST_PARTICIPATION"/>
+  <rdfs:Class rdf:about="http://trajano.us.es/~isabel/EHR/Support_RM.owl#OBJECT_REF"/>
+  <rdfs:Class rdf:about="http://trajano.us.es/~isabel/EHR/Support_RM.owl#LIST_OBJECT_ID"/>
+  <rdfs:Class rdf:about="http://trajano.us.es/~isabel/EHR/Common_RM.owl#VERSION_T"/>
+  <owl:Class rdf:ID="VERSION_REPOSITORY_TRANSACTION">
+    <rdfs:subClassOf rdf:resource="http://trajano.us.es/~isabel/EHR/Common_RM.owl#VERSION_REPOSITORY_T"/>
+  </owl:Class>
+  <owl:Class rdf:ID="VERSION_TRANSACTION">
+    <rdfs:subClassOf rdf:resource="http://trajano.us.es/~isabel/EHR/Common_RM.owl#VERSION_T"/>
+  </owl:Class>
+  <owl:Class rdf:ID="EVALUATION">
+    <srm:CEN rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cluster</srm:CEN>
+    <srm:MisUse rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Should not be used for actionable statements such as medication 
+orders these are represented with the INSTRUCTION type</srm:MisUse>
+    <srm:HL7 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Observation</srm:HL7>
+    <srm:GEHR rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >G1_SUBJECTIVE_CONTENT</srm:GEHR>
+    <srm:Use rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Used for all kinds of statements which evaluate other information, 
+such as interpretations of observations, diagnoses, differential 
+diagnoses, hypotheses, problem assessments and plans</srm:Use>
+    <rdfs:label xml:lang="en">EVALUATION</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="data"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="es">EVALUACION</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ENTRY"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://trajano.us.es/~isabel/EHR/Data_Structures_RM.owl#DATA_STRUCTURE"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#data"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <srm:Purpose rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Entry type for evaluation statements</srm:Purpose>
+  </owl:Class>
+  <owl:Class rdf:ID="VERSION_REPOSITORY_FOLDER">
+    <rdfs:subClassOf rdf:resource="http://trajano.us.es/~isabel/EHR/Common_RM.owl#VERSION_REPOSITORY_T"/>
+  </owl:Class>
+  <owl:Class rdf:ID="VERSIONED_TRANSACTION">
+    <srm:GEHR rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >G1_VERSIONED_TRANSACTION</srm:GEHR>
+    <srm:Purpose rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Version-controlled transaction abstraction, defined
+by inheriting VERSION_REPOSITORY_TRANSACTION</srm:Purpose>
+    <rdfs:label xml:lang="en">VERSIONED TRANSACTION</rdfs:label>
+    <rdfs:label xml:lang="es">TRANSACCION VERSIONADA</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#VERSION_REPOSITORY_TRANSACTION"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is_persistent"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#ENTRY">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="act_id"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <protege:abstract rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >true</protege:abstract>
+    <rdfs:label xml:lang="es">ENTRADA</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://trajano.us.es/~isabel/EHR/Common_RM.owl#RELATED_PARTY"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="subject"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <srm:OMGHDTF rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >COAS::HealthRecordEntry and COAS::ObservationQualifier, a generic
+class which is used to represent context attributes which are 
+concretely modelled here
+</srm:OMGHDTF>
+    <rdfs:label xml:lang="en">ENTRY</rdfs:label>
+    <srm:OMGDTF rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >COAS::HealthRecordEntry and COAS::ObservationQualifier</srm:OMGDTF>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="CONTENT_ITEM"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="protocol"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <srm:GEHR rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >*_CONTENT</srm:GEHR>
+    <srm:HL7 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Act</srm:HL7>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="provider"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="other_participations"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#subject"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <srm:Purpose rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The abstract parent of all ENTRY subtypes. An ENTRY is the root of a 
+logical item of "hard" clinical information created in the "clinical 
+statement" context. It is also the minimal unit of information any query 
+should return.</srm:Purpose>
+    <srm:CEN rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ClusterOCC</srm:CEN>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="INSTRUCTION"/>
+          <owl:Class rdf:about="#EVALUATION"/>
+          <owl:Class rdf:ID="OBSERVATION"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <srm:Synapses rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The Item class is the clossest match for Entry as described here</srm:Synapses>
+  </owl:Class>
+  <owl:Class rdf:ID="ORGANISER">
+    <srm:OMGHDTF rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >COAS::CompositeObservation</srm:OMGHDTF>
+    <srm:CEN rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Headed_section</srm:CEN>
+    <rdfs:label xml:lang="en">ORGANISER</rdfs:label>
+    <srm:Use rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created according to archetyped structures for typical headings 
+such as SOAP, physical examination, but also pathology result heading 
+structures</srm:Use>
+    <rdfs:label xml:lang="es">ORGANIZADOR</rdfs:label>
+    <srm:MisUse rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Should not be used instead of ENTRY hierarchical structures.</srm:MisUse>
+    <srm:Purpose rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Represents a heading in a heading structure, or "organiser tree"</srm:Purpose>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="items"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#CONTENT_ITEM"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="CLINICAL_CONTEXT">
+    <rdfs:label xml:lang="en">CLINICAL CONTEXT</rdfs:label>
+    <srm:Purpose rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Documents the clinical context of the clinical session (or encounter).
+The context information recorded here are independent of the 
+attributes recorded in the version audit, which document the 
+"system interaction" context, i.e. the context of a user interacting with 
+the health record system. Clinical sessions include patient contacts, 
+and any other business activity, such aas pathology investigations 
+which take place on behalf of the patient</srm:Purpose>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="health_care_facility"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="time"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <srm:Synapses rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Composition</srm:Synapses>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="other_context"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="location"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="participations"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="es">CONTEXTO CLINICO</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="practice_setting"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <srm:HL7 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >TBD</srm:HL7>
+  </owl:Class>
+  <owl:Class rdf:ID="LIST_CONTRIBUTION">
+    <rdfs:subClassOf rdf:resource="http://trajano.us.es/~isabel/EHR/Support_RM.owl#LIST_T"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://trajano.us.es/~isabel/EHR/Common_RM.owl#CONTRIBUTION"/>
+        <owl:onProperty rdf:resource="http://trajano.us.es/~isabel/EHR/Support_RM.owl#item"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="EHR">
+    <srm:Purpose rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The EHR class is the centre node of the EHR "repository" 
+for a subject of care</srm:Purpose>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="all_transactions"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">ehr</rdfs:label>
+    <rdfs:label xml:lang="es">ehr</rdfs:label>
+    <srm:Synapses rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >RecordFolder class</srm:Synapses>
+    <srm:CEN rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >EHCR</srm:CEN>
+    <srm:GEHR rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >G1_EHR</srm:GEHR>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="contributions"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#subject"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://trajano.us.es/~isabel/EHR/Common_RM.owl#PARTY_REF"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="directory"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#subject"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://trajano.us.es/~isabel/EHR/Common_RM.owl#LOCATABLE"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="time_created"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="TRANSACTION">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="content"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <srm:Synapses rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Composition class</srm:Synapses>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="feeder_audit"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_persistent"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <srm:Purpose rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >One version in a VERSIONED_TRANSACTION. A transaction is 
+considered the unit of modification of the record, the unit of 
+transmission in record extracts, and the unit of attestation by 
+authorising clinicians. In this latter sense, it may be considered 
+equivalent to a signed document.</srm:Purpose>
+    <rdfs:subClassOf rdf:resource="http://trajano.us.es/~isabel/EHR/Common_RM.owl#LOCATABLE"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="context"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <srm:CEN rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Composition</srm:CEN>
+    <rdfs:label xml:lang="es">TRANSACCION</rdfs:label>
+    <rdfs:label xml:lang="en">TRANSACTION</rdfs:label>
+    <srm:HL7 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >CDA DOCUMENT</srm:HL7>
+    <srm:GEHR rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >G1_TRANSACTION_VERSION</srm:GEHR>
+  </owl:Class>
+  <owl:Class rdf:ID="HISTORY">
+    <rdfs:subClassOf rdf:resource="http://trajano.us.es/~isabel/EHR/Common_RM.owl#LOCATABLE"/>
+  </owl:Class>
+  <owl:Class rdf:about="#INSTRUCTION">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="state"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#data"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://trajano.us.es/~isabel/EHR/Data_Structures_RM.owl#DATA_STRUCTURE"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <srm:GEHR rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >G1_INSTRUCTION</srm:GEHR>
+    <srm:Use rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Used for any actionable statement such as medication and therapeutic 
+orders, monitoring, recall and review. Enoug details must be provided 
+for the specification to be excuted by an actor.</srm:Use>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#data"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="guideline_id"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">INSTRUCTION</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="action"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <srm:CEN rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >n/a</srm:CEN>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="profile"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <srm:HL7 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Act subtype Substance_adminsitration, any Act type which is really an 
+action specification (cf and Act in the past)</srm:HL7>
+    <rdfs:label xml:lang="es">INSTRUCCION</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#ENTRY"/>
+    <srm:Purpose rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The root of an action specification</srm:Purpose>
+    <srm:MisUse rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Not to be used for plan items which are only specified in general terms, 
+e.g. "comence bronchodilator"</srm:MisUse>
+  </owl:Class>
+  <owl:Class rdf:about="#CONTENT_ITEM">
+    <rdfs:subClassOf rdf:resource="http://trajano.us.es/~isabel/EHR/Common_RM.owl#LOCATABLE"/>
+  </owl:Class>
+  <owl:Class rdf:ID="LIST_FOLDER">
+    <rdfs:subClassOf rdf:resource="http://trajano.us.es/~isabel/EHR/Support_RM.owl#LIST_T"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://trajano.us.es/~isabel/EHR/Support_RM.owl#item"/>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="FOLDER"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#FOLDER">
+    <srm:Synapses rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >RecordFolder</srm:Synapses>
+    <srm:Purpose rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The concept of a named folder</srm:Purpose>
+    <rdfs:label xml:lang="es">CARPETA</rdfs:label>
+    <rdfs:label xml:lang="en">FOLDER</rdfs:label>
+    <srm:CEN rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >FOLDER</srm:CEN>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="transactions"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="folders"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://trajano.us.es/~isabel/EHR/Common_RM.owl#LOCATABLE"/>
+  </owl:Class>
+  <owl:Class rdf:about="#OBSERVATION">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#data"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://trajano.us.es/~isabel/EHR/Data_Structures_RM.owl#HISTORY_T_STRUCTURE"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <srm:GEHR rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >G1_OBSERVATION_CONTENT, G1_SUBJECTIVE_CONTENT</srm:GEHR>
+    <srm:Purpose rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Entry subtype for all clinical data in the past or present, i.e. which
+(by the time it is recorded) has already ocurred. OBSERVATION data
+is expressed using the class HISTORY_T, which guarantees that
+it is situated in time.</srm:Purpose>
+    <srm:CEN rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cluster</srm:CEN>
+    <rdfs:subClassOf rdf:resource="#ENTRY"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#data"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <srm:Use rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OBSERVATION is used for all notional objective (i.e. measured in some
+way) observations of phenomenena as well as all statements or
+opinios (i.e. subjective data) about things in the past.
+</srm:Use>
+    <srm:MisUse rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >not used for future statements of any kind, including instructions, 
+intentions, plans etc...</srm:MisUse>
+    <rdfs:label xml:lang="es">OBSERVACION</rdfs:label>
+    <srm:HL7 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Observation</srm:HL7>
+    <rdfs:label xml:lang="en">OBSERVATION</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="LIST_CONTENT_ITEM">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://trajano.us.es/~isabel/EHR/Support_RM.owl#item"/>
+        <owl:allValuesFrom rdf:resource="#CONTENT_ITEM"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://trajano.us.es/~isabel/EHR/Support_RM.owl#LIST_T"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="#other_participations">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other participations at ENTRY level-archetypable</rdfs:comment>
+    <rdfs:label xml:lang="es">otras participaciones</rdfs:label>
+    <rdfs:label xml:lang="en">other participations</rdfs:label>
+    <rdfs:domain rdf:resource="#ENTRY"/>
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Common_RM.owl#LIST_PARTICIPATION"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#time">
+    <rdfs:label xml:lang="en">session time</rdfs:label>
+    <rdfs:label xml:lang="es">intervalo de la sesion</rdfs:label>
+    <rdfs:domain rdf:resource="#CLINICAL_CONTEXT"/>
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Data_Types_RM.owl#DV_INTERVAL_DV_DATE_TIME"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Start and endd times of the clinical sesion</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#folders">
+    <rdfs:range rdf:resource="#LIST_FOLDER"/>
+    <rdfs:domain rdf:resource="#FOLDER"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sub-folders of this FOLDER</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#context">
+    <rdfs:range rdf:resource="#CLINICAL_CONTEXT"/>
+    <rdfs:domain rdf:resource="#TRANSACTION"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The clinical session context of this
+transaction, i.e. the contextual attributes 
+of the clinical session</rdfs:comment>
+    <rdfs:label xml:lang="es">contexto</rdfs:label>
+    <rdfs:label xml:lang="en">context</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#contributions">
+    <rdfs:label xml:lang="en">contributions</rdfs:label>
+    <rdfs:label xml:lang="es">contribuciones</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >List of contributions causing changes to this EHR.
+Each contribution contains a list of versions, which may
+include paths pointing
+to any number of VERSIONABLE items
+items of type TRANSACTION and FOLDER_TREE</rdfs:comment>
+    <rdfs:range rdf:resource="#LIST_CONTRIBUTION"/>
+    <rdfs:domain rdf:resource="#EHR"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#state">
+    <rdfs:domain rdf:resource="#INSTRUCTION"/>
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Data_Types_RM.owl#DV_STATE"/>
+    <rdfs:label xml:lang="es">estado</rdfs:label>
+    <rdfs:label xml:lang="en">state</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >current state of the action in a state machine description</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#provider">
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Common_RM.owl#PARTICIPATION"/>
+    <rdfs:domain rdf:resource="#ENTRY"/>
+    <rdfs:label xml:lang="en">provider</rdfs:label>
+    <rdfs:label xml:lang="es">proveedor</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Id of provider of statement in this ENTRY,
+which might be:
+the patient
+a patient agent (parent, guardian...)
+the clinician
+a device or software</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#time_created">
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Data_Types_RM.owl#DV_DATE_TIME"/>
+    <rdfs:domain rdf:resource="#EHR"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >time of creation of the repository</rdfs:comment>
+    <rdfs:label xml:lang="es">instante de creacion</rdfs:label>
+    <rdfs:label xml:lang="en">time created</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#other_context">
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Data_Structures_RM.owl#DATA_STRUCTURE"/>
+    <rdfs:domain rdf:resource="#CLINICAL_CONTEXT"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Other optional context which will be archetyped.</rdfs:comment>
+    <rdfs:label xml:lang="es">otros contextos</rdfs:label>
+    <rdfs:label xml:lang="en">other context</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#subject">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#EHR"/>
+          <owl:Class rdf:about="#ENTRY"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:label xml:lang="en">subject</rdfs:label>
+    <rdfs:label xml:lang="es">sujeto</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#participations">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Parties involved in the clinical session. These would normally include the physician and often the patient (but not the latter if the clincal session is a pathology test for example)</rdfs:comment>
+    <rdfs:label xml:lang="es">participantes</rdfs:label>
+    <rdfs:label xml:lang="en">participations</rdfs:label>
+    <rdfs:domain rdf:resource="#CLINICAL_CONTEXT"/>
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Common_RM.owl#LIST_PARTICIPATION"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#location">
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Support_RM.owl#STRING"/>
+    <rdfs:domain rdf:resource="#CLINICAL_CONTEXT"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The actual location where the session occurred, e.g. "microbiol lab 2", "home", "ward A3" and so on</rdfs:comment>
+    <rdfs:label xml:lang="es">localizacion</rdfs:label>
+    <rdfs:label xml:lang="en">location</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#feeder_audit">
+    <rdfs:label xml:lang="en">feeder audit</rdfs:label>
+    <rdfs:label xml:lang="es">auditor origen</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Audit trail from non-openEHR system of
+original commit of information ofrming the
+content of the current item.</rdfs:comment>
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Common_RM.owl#VERSION_AUDIT"/>
+    <rdfs:domain rdf:resource="#TRANSACTION"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#directory">
+    <rdfs:label xml:lang="es">directorio</rdfs:label>
+    <rdfs:label xml:lang="en">directory</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional directory structure for this EHR</rdfs:comment>
+    <rdfs:range rdf:resource="#VERSION_REPOSITORY_FOLDER"/>
+    <rdfs:domain rdf:resource="#EHR"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#action">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >description of the action to be executed</rdfs:comment>
+    <rdfs:label xml:lang="es">accion</rdfs:label>
+    <rdfs:label xml:lang="en">action</rdfs:label>
+    <rdfs:domain rdf:resource="#INSTRUCTION"/>
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Data_Structures_RM.owl#DATA_STRUCTURE"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#practice_setting">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The practice setting, e.g. "outpatient facility", "hospital unit", "general practice" etc, which may be optionally coded. HL7 PracticeSetting domain may be useful for this.</rdfs:comment>
+    <rdfs:label xml:lang="en">practice setting</rdfs:label>
+    <rdfs:label xml:lang="es">catacteristicas practicas</rdfs:label>
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Data_Types_RM.owl#DV_TEXT"/>
+    <rdfs:domain rdf:resource="#CLINICAL_CONTEXT"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#profile">
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Data_Structures_RM.owl#DATA_STRUCTURE"/>
+    <rdfs:label xml:lang="en">profile</rdfs:label>
+    <rdfs:label xml:lang="es">perfil</rdfs:label>
+    <rdfs:domain rdf:resource="#INSTRUCTION"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >configuration data mappings from archetyped model of action</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#content">
+    <rdfs:domain rdf:resource="#TRANSACTION"/>
+    <rdfs:range rdf:resource="#ORGANISER"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The clinical session content
+of this transaction, i.e. the
+information generated in the clinical session</rdfs:comment>
+    <rdfs:label xml:lang="es">contenido</rdfs:label>
+    <rdfs:label xml:lang="en">content</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_persistent">
+    <rdfs:label xml:lang="es">es persistente</rdfs:label>
+    <rdfs:label xml:lang="en">is persistent</rdfs:label>
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Support_RM.owl#BOOLEAN"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#TRANSACTION"/>
+          <owl:Class rdf:about="#VERSIONED_TRANSACTION"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#transactions">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The list of references to versioned
+transactions in this folder. Since more
+than one folder can
+include the same transaction, this
+relationship is an association.</rdfs:comment>
+    <rdfs:label xml:lang="en">transactions</rdfs:label>
+    <rdfs:label xml:lang="es">transacciones</rdfs:label>
+    <rdfs:domain rdf:resource="#FOLDER"/>
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Support_RM.owl#LIST_OBJECT_ID"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#health_care_facility">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The HCF in the health system which took
+part in the encounter; usually, this
+is where the encounter physically took place, but
+not in the case of patinet home visits, internet
+contacts or emergency care.</rdfs:comment>
+    <rdfs:label xml:lang="es">servicio del sistema sanitario</rdfs:label>
+    <rdfs:label xml:lang="en">health care facility</rdfs:label>
+    <rdfs:domain rdf:resource="#CLINICAL_CONTEXT"/>
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Common_RM.owl#PARTY_REF"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#act_id">
+    <rdfs:domain rdf:resource="#ENTRY"/>
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Support_RM.owl#STRING"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Optional act identifier used by e.g. a
+workflow system for an act to
+which this ENTRY correspondes in
+some way. This identifier might
+have internal syntax and meaning to an external
+processor.</rdfs:comment>
+    <rdfs:label xml:lang="es">id del acto</rdfs:label>
+    <rdfs:label xml:lang="en">act id</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#items">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ordered list of content items under this organiser, which may include:
+more ORGANISERs
+ENTRYs</rdfs:comment>
+    <rdfs:label xml:lang="es">elementos contenidos</rdfs:label>
+    <rdfs:label xml:lang="en">content items</rdfs:label>
+    <rdfs:range rdf:resource="#LIST_CONTENT_ITEM"/>
+    <rdfs:domain rdf:resource="#ORGANISER"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#all_transactions">
+    <rdfs:label xml:lang="es">todas las transacciones</rdfs:label>
+    <rdfs:label xml:lang="en">all transactions</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Master list of all transaction references in this EHR</rdfs:comment>
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Support_RM.owl#LIST_OBJECT_ID"/>
+    <rdfs:domain rdf:resource="#EHR"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#guideline_id">
+    <rdfs:domain rdf:resource="#INSTRUCTION"/>
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Support_RM.owl#OBJECT_REF"/>
+    <rdfs:label xml:lang="es">identificador de la guia (protocolo)</rdfs:label>
+    <rdfs:label xml:lang="en">guideline id</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Identifier guideline creating this action if relevant</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#protocol">
+    <rdfs:range rdf:resource="http://trajano.us.es/~isabel/EHR/Data_Structures_RM.owl#DATA_STRUCTURE"/>
+    <rdfs:domain rdf:resource="#ENTRY"/>
+    <rdfs:label xml:lang="es">protocolo</rdfs:label>
+    <rdfs:label xml:lang="en">protocol</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Description of how and/or why th
+information in this entry was arrived
+at. For OBSERVATIONS, this is a description
+of the method or instrument used.
+For EVALUATIONS, how the evaluation
+was arrived at. For INSTRUCTIONS, how
+to execute the instruction. This may
+take the form of references to guidelines,
+including manually folowed and executable;
+knoledge references such as paper in Medline;
+clinical reasons within a largercare process</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#data">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#INSTRUCTION"/>
+          <owl:Class rdf:about="#EVALUATION"/>
+          <owl:Class rdf:about="#OBSERVATION"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:label xml:lang="en">data</rdfs:label>
+    <rdfs:label xml:lang="es">datos</rdfs:label>
+  </owl:ObjectProperty>
+  <rdf:Property rdf:about="http://trajano.us.es/~isabel/EHR/Support_RM.owl#OMGDTF"/>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.3.1, Build 430)  http://protege.stanford.edu -->
