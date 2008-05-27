@@ -1,0 +1,13 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+The Archetype Ontologizer is an application that uses our ehr2ont framework to translate OpenEHR archetypes into ontologies. Thus, it generates one OWL file for each ADL file that we convert. Resulting ontologies contain classes that not only represent their OpenEHR Ref. Model counterparts but they are also constrained by provided archetype definition. Therefore, generated OWL files are semantic translation of ADLs in a way that allows us to instantiate classes and properties in order to perform inference tasks on real data.
+
+
+
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
