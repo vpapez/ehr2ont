@@ -133,9 +133,9 @@ public class ADLOntologizerGUI extends javax.swing.JFrame {
     private void transjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transjButtonActionPerformed
         
         //Missing Implementation of RM ontology path definition interface
-        String directory = "./Repository/IsabelOntos";        
+        String directory = "./Repository/OpenEHROntos";        
         String ontology = "./Repository/CISEPOnto/CISEPonto.owl";
-        //String ontology = "./Repository/IsabelOntos/EHR_RM.owl";
+        //String ontology = "./Repository/OpenEHROntos/EHR_RM.owl";
         //////
         UAHJenaOWLModel om = new UAHJenaOWLModel(directory,  ontology);
         
