@@ -1,14 +1,14 @@
 #summary Deployment and Usage
 #labels Phase-Deploy
 
-= Installation =
+In a parallel way to this project usage, it is highly recommended to have installed Protégé in order to easily appreciate translation results and because app requires some Protégé’s libraries.
 
-Add your content here.
+For the project to run properly, following libraries should be available via CLASSPATH settings:
 
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+|| *Library* || *Location* || *Required for* ||
+|| adl-parser-1.0.5.jar || http://www.openehr.org/ || OpenEHR Java implementation ||
+|| openehr-aom-0.1.jar || http://www.openehr.org/ ||       ""   ""   ""      ||
+|| openehr-ap-0.1.jar || http://www.openehr.org/ ||       ""   ""   ""      ||
+|| openehr-rm-core-0.1.jar || http://www.openehr.org/ ||      ""   ""   ""      ||
+|| openehr-rm-domain-0.1.jar || http://www.openehr.org/ ||      ""   ""   ""       ||
+ 
