@@ -11,4 +11,14 @@ For the project to run properly, following libraries should be available via CLA
 || openehr-ap-0.1.jar || http://www.openehr.org/ ||       ""   ""   ""      ||
 || openehr-rm-core-0.1.jar || http://www.openehr.org/ ||      ""   ""   ""      ||
 || openehr-rm-domain-0.1.jar || http://www.openehr.org/ ||      ""   ""   ""       ||
- 
+|| joda.time-1.5.1.jar || http://joda-time.sourceforge.net/ || Required by the OpenEHR Java implementation ||
+|| commons-lang-2.3.jar || http://commons.apache.org/lang/ || Required by the OpenEHR Java implementation ||
+|| protege-owl.jar || 
+|| owlsyntax.jar || 
+|| protege.jar || 
+|| looks-2.1.3.jar || 
+|| jena.jar || 
+|| commons-logging-1.1.jar || 
+|| iri.jar || 
+|| icu4j_3_4.jar || 
+|| xercesImpl.jar || 
