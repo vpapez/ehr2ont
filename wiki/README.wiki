@@ -7,10 +7,10 @@ For the project to run properly, following libraries should be available via CLA
 
 || *Library* || *Location* || *Required for* ||
 || adl-parser-1.0.5.jar || http://www.openehr.org/ || OpenEHR Java implementation ||
-|| openehr-aom-0.1.jar || http://www.openehr.org/ ||       ""   ""   ""      ||
-|| openehr-ap-0.1.jar || http://www.openehr.org/ ||       ""   ""   ""      ||
-|| openehr-rm-core-0.1.jar || http://www.openehr.org/ ||      ""   ""   ""      ||
-|| openehr-rm-domain-0.1.jar || http://www.openehr.org/ ||      ""   ""   ""       ||
+|| openehr-aom-0.1.jar || http://www.openehr.org/ ||OpenEHR Java implementation||
+|| openehr-ap-0.1.jar || http://www.openehr.org/ || OpenEHR Java implementation ||
+|| openehr-rm-core-0.1.jar || http://www.openehr.org/ || OpenEHR Java implementation ||
+|| openehr-rm-domain-0.1.jar || http://www.openehr.org/ || OpenEHR Java implementation ||
 || joda.time-1.5.1.jar || http://joda-time.sourceforge.net/ || Required by the OpenEHR Java implementation ||
 || commons-lang-2.3.jar || http://commons.apache.org/lang/ || Required by the OpenEHR Java implementation ||
 || protege-owl.jar || http://protege.stanford.edu/ || Included and required by the Protègè OWL programming interfaces, included with Protègè 3.3.1 ||
