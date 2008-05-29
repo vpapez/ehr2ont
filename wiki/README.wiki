@@ -14,11 +14,11 @@ For the project to run properly, following libraries should be available via CLA
 || joda.time-1.5.1.jar || http://joda-time.sourceforge.net/ || Required by the OpenEHR Java implementation ||
 || commons-lang-2.3.jar || http://commons.apache.org/lang/ || Required by the OpenEHR Java implementation ||
 || protege-owl.jar || http://protege.stanford.edu/ || Included and required by the Protègè OWL programming interfaces, included with Protègè 3.3.1 ||
-|| owlsyntax.jar || http://protege.stanford.edu/ ||      ""   ""   ""      ||
-|| protege.jar || http://protege.stanford.edu/ ||      ""   ""   ""      ||
-|| looks-2.1.3.jar || http://protege.stanford.edu/ ||      ""   ""   ""      ||
-|| jena.jar || http://protege.stanford.edu/ ||      ""   ""   ""      ||
-|| commons-logging-1.1.jar || http://protege.stanford.edu/ ||      ""   ""   ""      ||
-|| iri.jar || http://protege.stanford.edu/ ||      ""   ""   ""      ||
-|| icu4j_3_4.jar || http://protege.stanford.edu/ ||      ""   ""   ""      ||
-|| xercesImpl.jar || http://protege.stanford.edu/ ||      ""   ""   ""      ||
+|| owlsyntax.jar || http://protege.stanford.edu/ || Included and required by the Protègè OWL programming interfaces, included with Protègè 3.3.1 ||
+|| protege.jar || http://protege.stanford.edu/ || Included and required by the Protègè OWL programming interfaces, included with Protègè 3.3.1 ||
+|| looks-2.1.3.jar || http://protege.stanford.edu/ || Included and required by the Protègè OWL programming interfaces, included with Protègè 3.3.1 ||
+|| jena.jar || http://protege.stanford.edu/ || Included and required by the Protègè OWL programming interfaces, included with Protègè 3.3.1 ||
+|| commons-logging-1.1.jar || http://protege.stanford.edu/ || Included and required by the Protègè OWL programming interfaces, included with Protègè 3.3.1 ||
+|| iri.jar || http://protege.stanford.edu/ || Included and required by the Protègè OWL programming interfaces, included with Protègè 3.3.1 ||
+|| icu4j_3_4.jar || http://protege.stanford.edu/ || Included and required by the Protègè OWL programming interfaces, included with Protègè 3.3.1 ||
+|| xercesImpl.jar || http://protege.stanford.edu/ || Included and required by the Protègè OWL programming interfaces, included with Protègè 3.3.1 ||
