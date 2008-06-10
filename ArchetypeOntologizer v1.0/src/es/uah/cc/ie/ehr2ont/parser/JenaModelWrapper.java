@@ -49,7 +49,7 @@ import org.openehr.rm.support.basic.Interval;
  *
  * @author Leonardo Lezcano
  */
-public class UAHJenaOWLModel {
+public class JenaModelWrapper {
     
     // <editor-fold defaultstate="collapsed" desc="extending JenaOWLModel"> 
     //In another implementation this class could extend JenaOWLModel to get benefits
@@ -66,7 +66,7 @@ public class UAHJenaOWLModel {
     public JenaOWLModel owlModel;
     public OWLDatatypeProperty idAnnot;
     
-    public UAHJenaOWLModel(String directory, String owlFile)
+    public JenaModelWrapper(String directory, String owlFile)
     {        
         BufferedReader reader = null;
         try{

@@ -21,7 +21,7 @@ package es.uah.cc.ie.ehr2ont.translator;
 
 import edu.stanford.smi.protegex.owl.model.OWLNamedClass;
 import edu.stanford.smi.protegex.owl.model.RDFSDatatype;
-import es.uah.cc.ie.ehr2ont.parser.UAHJenaOWLModel;
+import es.uah.cc.ie.ehr2ont.parser.JenaModelWrapper;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -41,7 +41,7 @@ import org.openehr.rm.support.basic.Interval;
  */
 public class DateTranslator extends Translator
 {
-    public DateTranslator(Archetype arc, UAHJenaOWLModel model, CObject co, Translator superTrans)
+    public DateTranslator(Archetype arc, JenaModelWrapper model, CObject co, Translator superTrans)
     {
         super(arc, model, co, superTrans);
     }

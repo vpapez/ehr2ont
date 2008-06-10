@@ -23,7 +23,7 @@ package es.uah.cc.ie.ehr2ont.translator;
  *
  * @author Rosmary Calzadilla
  */
-import es.uah.cc.ie.ehr2ont.parser.UAHJenaOWLModel;
+import es.uah.cc.ie.ehr2ont.parser.JenaModelWrapper;
 import java.util.Iterator;
 import java.util.List;
 import org.openehr.am.archetype.Archetype;
@@ -36,7 +36,7 @@ public class ObservationTranslator extends Translator
 {
     
     
-    public ObservationTranslator(Archetype arc, UAHJenaOWLModel model, CObject co, Translator superTrans) 
+    public ObservationTranslator(Archetype arc, JenaModelWrapper model, CObject co, Translator superTrans) 
     {
         super(arc, model, co, superTrans);  
     }

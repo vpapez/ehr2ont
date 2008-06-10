@@ -19,7 +19,7 @@
 
 package es.uah.cc.ie.ehr2ont.translator;
 
-import es.uah.cc.ie.ehr2ont.parser.UAHJenaOWLModel;
+import es.uah.cc.ie.ehr2ont.parser.JenaModelWrapper;
 import org.openehr.am.archetype.Archetype;
 import org.openehr.am.archetype.constraintmodel.CObject;
 
@@ -29,7 +29,7 @@ import org.openehr.am.archetype.constraintmodel.CObject;
  */
 public class ItemTreeTranslator extends ItemStructTranslator
 {
-     public ItemTreeTranslator(Archetype arc, UAHJenaOWLModel model, CObject co, Translator superTrans)
+     public ItemTreeTranslator(Archetype arc, JenaModelWrapper model, CObject co, Translator superTrans)
     {
         super(arc, model, co, superTrans);
         this.supClsName = "dsrm:ITEM_TREE";

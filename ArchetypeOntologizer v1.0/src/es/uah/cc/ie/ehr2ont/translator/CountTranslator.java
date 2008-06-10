@@ -23,7 +23,7 @@ import edu.stanford.smi.protegex.owl.model.OWLDatatypeProperty;
 import edu.stanford.smi.protegex.owl.model.RDFSDatatype;
 import edu.stanford.smi.protegex.owl.model.RDFSDatatypeFactory;
 import edu.stanford.smi.protegex.owl.model.RDFSLiteral;
-import es.uah.cc.ie.ehr2ont.parser.UAHJenaOWLModel;
+import es.uah.cc.ie.ehr2ont.parser.JenaModelWrapper;
 import java.util.Iterator;
 import java.util.List;
 import org.openehr.am.archetype.Archetype;
@@ -41,7 +41,7 @@ import org.openehr.rm.support.basic.Interval;
  */
 public class CountTranslator extends Translator
 {
-    public CountTranslator(Archetype arc, UAHJenaOWLModel model, CObject co, Translator superTrans)
+    public CountTranslator(Archetype arc, JenaModelWrapper model, CObject co, Translator superTrans)
     {
         super(arc, model, co, superTrans);
     }

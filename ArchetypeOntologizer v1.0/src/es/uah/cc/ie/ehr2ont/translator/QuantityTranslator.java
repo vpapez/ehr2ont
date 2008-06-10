@@ -26,7 +26,7 @@ import edu.stanford.smi.protegex.owl.model.OWLIntersectionClass;
 import edu.stanford.smi.protegex.owl.model.OWLUnionClass;
 import edu.stanford.smi.protegex.owl.model.RDFSDatatype;
 import edu.stanford.smi.protegex.owl.model.RDFSLiteral;
-import es.uah.cc.ie.ehr2ont.parser.UAHJenaOWLModel;
+import es.uah.cc.ie.ehr2ont.parser.JenaModelWrapper;
 import java.util.Iterator;
 import org.openehr.am.archetype.Archetype;
 import org.openehr.am.archetype.constraintmodel.CObject;
@@ -40,7 +40,7 @@ import org.openehr.am.openehrprofile.datatypes.quantity.CDvQuantityItem;
 
 public class QuantityTranslator extends Translator
 {
-    public QuantityTranslator(Archetype arc, UAHJenaOWLModel model, CObject co, Translator superTrans)
+    public QuantityTranslator(Archetype arc, JenaModelWrapper model, CObject co, Translator superTrans)
     {
         super(arc, model, co, superTrans);
     }

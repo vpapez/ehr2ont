@@ -25,7 +25,7 @@ package es.uah.cc.ie.ehr2ont.translator;
  */
 
 import edu.stanford.smi.protegex.owl.model.OWLUnionClass;
-import es.uah.cc.ie.ehr2ont.parser.UAHJenaOWLModel;
+import es.uah.cc.ie.ehr2ont.parser.JenaModelWrapper;
 import java.util.Iterator;
 import java.util.List;
 import org.openehr.am.archetype.Archetype;
@@ -38,7 +38,7 @@ import org.openehr.am.archetype.constraintmodel.CObject;
 public class HistoryTranslator extends Translator
 {
         
-    public HistoryTranslator(Archetype arc, UAHJenaOWLModel model, CObject co, Translator superTrans)
+    public HistoryTranslator(Archetype arc, JenaModelWrapper model, CObject co, Translator superTrans)
     {
         super(arc, model, co, superTrans);
     }

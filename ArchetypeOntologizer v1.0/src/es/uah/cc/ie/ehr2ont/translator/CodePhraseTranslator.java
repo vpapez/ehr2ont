@@ -25,7 +25,7 @@ import edu.stanford.smi.protegex.owl.model.OWLNamedClass;
 import edu.stanford.smi.protegex.owl.model.OWLUnionClass;
 import edu.stanford.smi.protegex.owl.model.RDFSLiteral;
 import es.uah.cc.ie.ehr2ont.parser.ArchetypeUtils;
-import es.uah.cc.ie.ehr2ont.parser.UAHJenaOWLModel;
+import es.uah.cc.ie.ehr2ont.parser.JenaModelWrapper;
 import java.util.Iterator;
 import java.util.List;
 import org.openehr.am.archetype.Archetype;
@@ -39,7 +39,7 @@ import org.openehr.am.openehrprofile.datatypes.text.CCodePhrase;
  */
 public class CodePhraseTranslator extends Translator
 {
-    public CodePhraseTranslator(Archetype arc, UAHJenaOWLModel model, CObject co, Translator superTrans)
+    public CodePhraseTranslator(Archetype arc, JenaModelWrapper model, CObject co, Translator superTrans)
     {
         super(arc, model, co, superTrans);
     }

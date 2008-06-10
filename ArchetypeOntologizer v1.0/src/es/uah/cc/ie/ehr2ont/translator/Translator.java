@@ -26,7 +26,7 @@ package es.uah.cc.ie.ehr2ont.translator;
 import edu.stanford.smi.protegex.owl.model.OWLNamedClass;
 import edu.stanford.smi.protegex.owl.model.RDFResource;
 import es.uah.cc.ie.ehr2ont.parser.ArchetypeUtils;
-import es.uah.cc.ie.ehr2ont.parser.UAHJenaOWLModel;
+import es.uah.cc.ie.ehr2ont.parser.JenaModelWrapper;
 import org.openehr.am.archetype.Archetype;
 import org.openehr.am.archetype.constraintmodel.CObject;
 
@@ -39,7 +39,7 @@ public abstract class Translator
 {
     Archetype arc; 
     CObject co;
-    UAHJenaOWLModel model;
+    JenaModelWrapper model;
     //In order to avoid the same translation process to be repeted, below var
     //will store the translation resulting OWL Class    
     OWLNamedClass coOWLCls = null;
@@ -55,7 +55,7 @@ public abstract class Translator
      * @param co Defines next node to be translated in the adl hierarchy 
      * @param superTranslator Back pointer to super Node translator.
      */
-    public Translator(Archetype arc, UAHJenaOWLModel model, CObject co, Translator superTranslator)
+    public Translator(Archetype arc, JenaModelWrapper model, CObject co, Translator superTranslator)
     {
         this.arc = arc;
         this.model=model;

@@ -23,14 +23,14 @@ package es.uah.cc.ie.ehr2ont.translator;
  *
  * @author Rosmary Calzadilla
  */
-import es.uah.cc.ie.ehr2ont.parser.UAHJenaOWLModel;
+import es.uah.cc.ie.ehr2ont.parser.JenaModelWrapper;
 import org.openehr.am.archetype.Archetype;
 
 
 public class OpenEHR2OwlTranslator extends Translator
 {   
     
-    public OpenEHR2OwlTranslator(Archetype arc, UAHJenaOWLModel model)
+    public OpenEHR2OwlTranslator(Archetype arc, JenaModelWrapper model)
     {
         super(arc, model, arc.getDefinition(), null);        
     }

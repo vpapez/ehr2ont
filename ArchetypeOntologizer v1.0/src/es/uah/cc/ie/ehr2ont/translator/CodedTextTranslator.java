@@ -22,7 +22,7 @@ package es.uah.cc.ie.ehr2ont.translator;
 import edu.stanford.smi.protegex.owl.model.OWLNamedClass;
 import edu.stanford.smi.protegex.owl.model.RDFSDatatype;
 import es.uah.cc.ie.ehr2ont.parser.ArchetypeUtils;
-import es.uah.cc.ie.ehr2ont.parser.UAHJenaOWLModel;
+import es.uah.cc.ie.ehr2ont.parser.JenaModelWrapper;
 import java.util.Iterator;
 import java.util.List;
 import org.openehr.am.archetype.Archetype;
@@ -41,7 +41,7 @@ import org.openehr.rm.support.basic.Interval;
  */
 public class CodedTextTranslator extends Translator
 {
-    public CodedTextTranslator(Archetype arc, UAHJenaOWLModel model, CObject co, Translator superTrans)
+    public CodedTextTranslator(Archetype arc, JenaModelWrapper model, CObject co, Translator superTrans)
     {
         super(arc, model, co, superTrans);
     }

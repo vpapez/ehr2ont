@@ -25,7 +25,7 @@
 package es.uah.cc.ie.ehr2ont.GUI;
 
 import edu.stanford.smi.protegex.owl.model.OWLModel;
-import es.uah.cc.ie.ehr2ont.parser.UAHJenaOWLModel;
+import es.uah.cc.ie.ehr2ont.parser.JenaModelWrapper;
 import es.uah.cc.ie.ehr2ont.translator.OpenEHR2OwlTranslator;
 import java.io.File;
 import java.io.FileInputStream;
@@ -137,7 +137,7 @@ public class ADLOntologizerGUI extends javax.swing.JFrame {
         String ontology = "./Repository/CISEPOnto/CISEPonto.owl";
         //String ontology = "./Repository/OpenEHROntos/EHR_RM.owl";
         //////
-        UAHJenaOWLModel om = new UAHJenaOWLModel(directory,  ontology);
+        JenaModelWrapper om = new JenaModelWrapper(directory,  ontology);
         
         //if(selectedArc = null)
             //throw new Exception or messageBox

@@ -24,7 +24,7 @@ import edu.stanford.smi.protegex.owl.model.OWLHasValue;
 import edu.stanford.smi.protegex.owl.model.OWLUnionClass;
 import edu.stanford.smi.protegex.owl.model.RDFSLiteral;
 import es.uah.cc.ie.ehr2ont.parser.ArchetypeUtils;
-import es.uah.cc.ie.ehr2ont.parser.UAHJenaOWLModel;
+import es.uah.cc.ie.ehr2ont.parser.JenaModelWrapper;
 import java.util.Iterator;
 import org.openehr.am.archetype.Archetype;
 import org.openehr.am.archetype.constraintmodel.CObject;
@@ -37,7 +37,7 @@ import org.openehr.am.openehrprofile.datatypes.quantity.Ordinal;
  */
 public class OrdinalTranslator extends Translator
 {
-    public OrdinalTranslator(Archetype arc, UAHJenaOWLModel model, CObject co, Translator superTrans) 
+    public OrdinalTranslator(Archetype arc, JenaModelWrapper model, CObject co, Translator superTrans) 
     {
         super(arc, model, co, superTrans);  
     }

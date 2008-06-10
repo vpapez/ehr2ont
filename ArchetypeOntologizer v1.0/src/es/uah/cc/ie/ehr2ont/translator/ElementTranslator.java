@@ -23,7 +23,7 @@ package es.uah.cc.ie.ehr2ont.translator;
  *
  * @author Leonardo Lezcano
  */
-import es.uah.cc.ie.ehr2ont.parser.UAHJenaOWLModel;
+import es.uah.cc.ie.ehr2ont.parser.JenaModelWrapper;
 import java.util.Iterator;
 import java.util.List;
 import org.openehr.am.archetype.Archetype;
@@ -38,7 +38,7 @@ import org.openehr.rm.datatypes.text.CodePhrase;
         
 public class ElementTranslator extends Translator
 {
-    public ElementTranslator(Archetype arc, UAHJenaOWLModel model, CObject co, Translator superTrans)
+    public ElementTranslator(Archetype arc, JenaModelWrapper model, CObject co, Translator superTrans)
     {
         super(arc, model, co, superTrans);
     }
