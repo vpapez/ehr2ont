@@ -25,6 +25,7 @@
 package es.uah.cc.ie.ehr2ont.GUI;
 
 import edu.stanford.smi.protegex.owl.model.OWLModel;
+import es.uah.cc.ie.ehr2ont.parser.ArchetypeUtils;
 import es.uah.cc.ie.ehr2ont.parser.JenaModelWrapper;
 import es.uah.cc.ie.ehr2ont.translator.OpenEHR2OwlTranslator;
 import java.io.File;
@@ -36,6 +37,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JRadioButton;
 import org.openehr.am.archetype.Archetype;
 import org.openehr.am.archetype.ontology.ArchetypeOntology;
 import org.openehr.am.archetype.ontology.ArchetypeTerm;
@@ -69,6 +71,8 @@ public class ADLOntologizerGUI extends javax.swing.JFrame {
         jInfoLabel = new javax.swing.JLabel();
         transjButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jRadioButton_spa = new javax.swing.JRadioButton();
+        jRadioButton_eng = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Archetype Ontologizer");
@@ -92,18 +96,41 @@ public class ADLOntologizerGUI extends javax.swing.JFrame {
 
         jLabel1.setText("Selected Archetype Concept:");
 
+        jRadioButton_spa.setText("Spanish terms");
+        jRadioButton_spa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton_spaActionPerformed(evt);
+            }
+        });
+
+        jRadioButton_eng.setSelected(true);
+        jRadioButton_eng.setText("English terms");
+        jRadioButton_eng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton_engActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jAdlFileChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(transjButton)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jInfoLabel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jAdlFileChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(transjButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButton_spa)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jRadioButton_eng)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jInfoLabel)))))
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,10 +138,12 @@ public class ADLOntologizerGUI extends javax.swing.JFrame {
                 .addComponent(jAdlFileChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(transjButton)
+                    .addComponent(jRadioButton_eng)
                     .addComponent(jLabel1)
-                    .addComponent(jInfoLabel)
-                    .addComponent(transjButton))
-                .addContainerGap())
+                    .addComponent(jInfoLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jRadioButton_spa))
         );
 
         pack();
@@ -144,6 +173,22 @@ public class ADLOntologizerGUI extends javax.swing.JFrame {
         OpenEHR2OwlTranslator tlr = new OpenEHR2OwlTranslator(selectedArc, om);
         tlr.Translate();
     }//GEN-LAST:event_transjButtonActionPerformed
+
+    private void jRadioButton_engActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_engActionPerformed
+        jRadioButton_eng.setSelected(true);
+        jRadioButton_spa.setSelected(false);
+        ArchetypeUtils.idiom = "en";
+               
+        System.out.println(ArchetypeUtils.idiom);
+    }//GEN-LAST:event_jRadioButton_engActionPerformed
+
+    private void jRadioButton_spaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_spaActionPerformed
+        jRadioButton_eng.setSelected(false);
+        jRadioButton_spa.setSelected(true);
+        ArchetypeUtils.idiom = "es";
+               
+        System.out.println(ArchetypeUtils.idiom);
+    }//GEN-LAST:event_jRadioButton_spaActionPerformed
     
   
     private void SetADLInfo(File adlFile)
@@ -166,7 +211,7 @@ public class ADLOntologizerGUI extends javax.swing.JFrame {
            while (it.hasNext())
            {
                OntologyDefinitions od = (OntologyDefinitions)it.next();               
-               if (od.getLanguage().equals("es"))
+               if (od.getLanguage().equals(ArchetypeUtils.idiom))
                {
                    List<ArchetypeTerm> aterms = od.getDefinitions();
                    Iterator it2 = aterms.iterator();
@@ -212,6 +257,8 @@ public class ADLOntologizerGUI extends javax.swing.JFrame {
     private javax.swing.JFileChooser jAdlFileChooser;
     private javax.swing.JLabel jInfoLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JRadioButton jRadioButton_eng;
+    private javax.swing.JRadioButton jRadioButton_spa;
     private javax.swing.JButton transjButton;
     // End of variables declaration//GEN-END:variables
     

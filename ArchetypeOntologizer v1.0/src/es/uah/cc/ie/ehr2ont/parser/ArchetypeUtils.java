@@ -32,6 +32,8 @@ import org.openehr.am.archetype.ontology.OntologyDefinitions;
 
 public class ArchetypeUtils 
 {
+    public static String idiom = "en";
+    
      public static String getTermDefinitionFor(String isoLanguageCode,
             String id, Archetype a){
            ArchetypeOntology ao = a.getOntology();
@@ -54,6 +56,30 @@ public class ArchetypeUtils
            }           
            return "";
         }
+     
+     public static String getConstraintDefinitionFor(String isoLanguageCode,
+            String id, Archetype a){
+           ArchetypeOntology ao = a.getOntology();
+           List<OntologyDefinitions> odefs = ao.getConstraintDefinitionsList();
+           Iterator it = odefs.iterator();
+           while (it.hasNext()){
+               OntologyDefinitions od = (OntologyDefinitions)it.next();    
+               if (od.getLanguage().equals(isoLanguageCode)){
+                   List<ArchetypeTerm> aterms = od.getDefinitions();
+                   Iterator it2 = aterms.iterator();
+                   while (it2.hasNext()){
+                       ArchetypeTerm at =(ArchetypeTerm)it2.next();
+                       if (at.getCode().equals(id)){
+                           return at.getItem("text");
+                       }
+                           
+                   }
+               }
+               
+           }           
+           return "";
+        }
+     
      
      /**
       * Extracts node ID from the entire path or node address.

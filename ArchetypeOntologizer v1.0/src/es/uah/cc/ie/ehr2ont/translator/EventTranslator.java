@@ -61,11 +61,17 @@ public class EventTranslator extends Translator
                       cobj=(CObject)ait.next();
                       if(cobj instanceof CComplexObject)
                       {
-                          if(cobj.getRmTypeName().equals("ITEM_LIST"))
+                          //Use Translator tl instead of itt and itr for better code
+                          if(cobj.getRmTypeName().equals("ITEM_LIST") || cobj.getRmTypeName().equals("ITEM_TREE"))
                           {
-                               ItemListTranslator itt=new ItemListTranslator(arc, model, (CComplexObject)cobj, this);
-                               itt.Translate();
-                               this.model.SetAllValuesRest(this.coOWLCls, "dsrm:item", itt.GetResult());
+                              Translator tr;
+                              if(cobj.getRmTypeName().equals("ITEM_LIST"))
+                                  tr = new ItemListTranslator(arc, model, (CComplexObject)cobj, this);
+                              else
+                                  tr = new ItemTreeTranslator(arc, model, (CComplexObject)cobj, this);                              
+                             
+                               tr.Translate();
+                               this.model.SetAllValuesRest(this.coOWLCls, "dsrm:item", tr.GetResult());                                              
                           }
                           continue;
                       }                      

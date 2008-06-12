@@ -80,7 +80,7 @@ public abstract class Translator
         if(this.co.getNodeID() != null)
         {        
             this.coOWLCls.setPropertyValue(this.model.idAnnot, this.co.getNodeID());
-            defName = ArchetypeUtils.getTermDefinitionFor("es", co.getNodeID(), arc);            
+            defName = ArchetypeUtils.getTermDefinitionFor(ArchetypeUtils.idiom, co.getNodeID(), arc);            
             defName = defName.replace(' ', '_');
         }
         else

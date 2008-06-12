@@ -66,7 +66,7 @@ public class OrdinalTranslator extends Translator
             val = this.model.owlModel.createRDFSLiteral(ord.getValue());
             hasInt = this.model.owlModel.createOWLHasValue(prop, val);
             unionClass.addOperand(hasInt);
-            defName = ArchetypeUtils.getTermDefinitionFor("es", ord.getSymbol().getCodeString(), this.arc);
+            defName = ArchetypeUtils.getTermDefinitionFor(ArchetypeUtils.idiom, ord.getSymbol().getCodeString(), this.arc);
             comm += Integer.toString(ord.getValue()) + " -> " + defName + ", ";
         }        
         this.coOWLCls.addSuperclass(unionClass);

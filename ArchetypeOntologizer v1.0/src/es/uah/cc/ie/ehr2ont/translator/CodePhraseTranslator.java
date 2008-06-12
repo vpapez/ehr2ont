@@ -68,7 +68,7 @@ public class CodePhraseTranslator extends Translator
             val = this.model.owlModel.createRDFSLiteral(code);
             hasStr = this.model.owlModel.createOWLHasValue(prop, val);
             unionClass.addOperand(hasStr);
-            defName = ArchetypeUtils.getTermDefinitionFor("es", code, this.arc);
+            defName = ArchetypeUtils.getTermDefinitionFor(ArchetypeUtils.idiom, code, this.arc);
             comm += code + " -> " + defName + ", ";
         }        
         this.coOWLCls.addSuperclass(unionClass);

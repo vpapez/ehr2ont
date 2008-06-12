@@ -19,8 +19,6 @@
 
 package es.uah.cc.ie.ehr2ont.translator;
 
-import edu.stanford.smi.protegex.owl.model.OWLNamedClass;
-import edu.stanford.smi.protegex.owl.model.RDFSDatatype;
 import es.uah.cc.ie.ehr2ont.parser.ArchetypeUtils;
 import es.uah.cc.ie.ehr2ont.parser.JenaModelWrapper;
 import java.util.Iterator;
@@ -29,11 +27,8 @@ import org.openehr.am.archetype.Archetype;
 import org.openehr.am.archetype.constraintmodel.CAttribute;
 import org.openehr.am.archetype.constraintmodel.CComplexObject;
 import org.openehr.am.archetype.constraintmodel.CObject;
-import org.openehr.am.archetype.constraintmodel.CPrimitiveObject;
-import org.openehr.am.archetype.constraintmodel.primitive.CInteger;
-import org.openehr.am.archetype.constraintmodel.primitive.CPrimitive;
+import org.openehr.am.archetype.constraintmodel.ConstraintRef;
 import org.openehr.am.openehrprofile.datatypes.text.CCodePhrase;
-import org.openehr.rm.support.basic.Interval;
 
 /**
  *
@@ -70,7 +65,16 @@ public class CodedTextTranslator extends Translator
                           CodePhraseTranslator cpht = new CodePhraseTranslator(arc, model, cobj, this);
                           cpht.Translate();
                           this.model.SetAllValuesRest(this.coOWLCls, "dtrm:defining_code", cpht.GetResult());
-                      }                      
+                      }
+                      else
+                      {
+                          if(cobj instanceof ConstraintRef)
+                          {
+                              ConstraintRef cr = (ConstraintRef) cobj;
+                              this.coOWLCls.addComment(ArchetypeUtils.getConstraintDefinitionFor(ArchetypeUtils.idiom, 
+                                      cr.getReference(), this.arc));
+                          } 
+                      }
                   }
               }
         }
