@@ -1,4 +1,4 @@
-#summary project summary and fundings
+#summary project summary
 #labels Phase-Design
 
 == Overview ==
