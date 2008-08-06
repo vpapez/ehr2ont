@@ -7,11 +7,11 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://www.cc.uah.es/ie/ont/CISEPonto.owl">
   <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://trajano.us.es/~isabel/EHR/EHR_RM.owl"/>
+    <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/protege"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Archetypes Ontology based on the openEHR EHR Reference Model
 Revision: 1.0</rdfs:comment>
-    <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/protege"/>
-    <owl:imports rdf:resource="http://trajano.us.es/~isabel/EHR/EHR_RM.owl"/>
   </owl:Ontology>
   <rdf:Property rdf:ID="OMGDTF"/>
 </rdf:RDF>
