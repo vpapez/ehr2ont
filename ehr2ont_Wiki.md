@@ -1,0 +1,5 @@
+## Overview ##
+
+The Archetype Ontologizer is an application that uses the ehr2ont framework to translate _OpenEHR_ archetypes into ontologies. Thus, it generates one _OWL_ file per each _ADL_ passed to the libraries. Resulting ontologies contain classes that not only represent their OpenEHR Reference Model counterparts but they are also constrained by the provided archetype definition. Therefore, generated _OWL_ files are semantic translation of _ADLs_ in a way that allows us to instantiate classes and properties and ventually perform inference tasks on real data.
+
+This work has been partially funded by `roject CISEP “Intelligent Clinical Record to improve Patient Safety”, under the programme PROFIT FIT-350301-2007-18 of the Spanish Ministry of Industry.  ![http://ehr2ont.googlecode.com/svn/ArchetypeOntologizer%20v1.0/logo_CISSEP.png](http://ehr2ont.googlecode.com/svn/ArchetypeOntologizer%20v1.0/logo_CISSEP.png)
